@@ -38,6 +38,24 @@ resource "aws_security_group" "All-Traffic-Allow-SG" {
     to_port          = 22
     protocol         = "tcp"
     cidr_blocks      = ["0.0.0.0/0"] // Allow SSH Connection from AnyWhere
+  
+  }
+
+
+  egress {
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description      = "All traffic"
+    from_port        = 0
+    to_port          = 0
+    protocol         = "tcp"
+    cidr_blocks      = ["0.0.0.0/0"] // Allow all trafiice Connection from AnyWhere
+ 
   }
 
   egress {
@@ -46,6 +64,7 @@ resource "aws_security_group" "All-Traffic-Allow-SG" {
     protocol         = "-1"
     cidr_blocks      = ["0.0.0.0/0"]
   }
+
 
   tags = {
     Name = "Devops-Project-2-Allow-Traffic-SG"
