@@ -127,6 +127,8 @@ resource "aws_route_table_association" "Devops-Project-2-RT-Subnet-1B" {
     subnet_id = aws_subnet.Devops-Project-2-Subnet-1B.id
     route_table_id = aws_route_table.Devops-Project-2-RT.id
 }
+
+
   module "sgs" {
     source = "../sg_eks"
     vpc_id     =     aws_vpc.Devops-Project-2-VPC.id
@@ -138,4 +140,5 @@ resource "aws_route_table_association" "Devops-Project-2-RT-Subnet-1B" {
        subnet_ids = [aws_subnet.Devops-Project-2-Subnet-1A.id,aws_subnet.Devops-Project-2-Subnet-1B.id]
        sg_ids = module.sgs.security_group_public
  }
+
 
